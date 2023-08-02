@@ -5,18 +5,32 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
     inputs:
       service:
         required: true
+  push:
+    branches: 
+      - master
 
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  lists:
+    outputs:
+      packages: ${{ steps.list.outputs.service }}
+
+    steps:
+      - name: Packages list
+        id: list
+        run: |
+          if [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
+            echo "service=${{format('[{0}]',inputs.service)}}" >> "$GITHUB_OUTPUT"  
+          else
+            echo service="['api-service','data-tables-service','infra-manager-service','support-service','users-service','applicants-service','document-service','partner-service','verification-service','billing-service','external-data-providers-service','storage-service']" >> "$GITHUB_OUTPUT"
+          fi
+          echo $GITHUB_OUTPUT
+
+  
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -51,4 +65,4 @@ jobs:
           echo $GITHUB_OUTPUT
       - name: echo command
         run: |
-          echo $GITHUB_OUTPUT
+          echo ${{ fromJSON(needs.lists.outputs.packages) }}
