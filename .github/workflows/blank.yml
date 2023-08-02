@@ -52,5 +52,3 @@ jobs:
       - name: echo command
         run: |
           echo $GITHUB_OUTPUT
-          $GITHUB_OUTPUT >> $service
-          echo $service
