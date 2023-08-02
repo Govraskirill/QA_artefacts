@@ -50,5 +50,7 @@ jobs:
           fi
           echo $GITHUB_OUTPUT
       - name: echo command
-        run: echo $GITHUB_OUTPUT
-
+        run: |
+          echo $GITHUB_OUTPUT
+          $GITHUB_OUTPUT >> $service
+          echo $service
