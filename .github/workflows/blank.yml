@@ -48,4 +48,6 @@ jobs:
           else
             echo service="['api-service','data-tables-service','infra-manager-service','support-service','users-service','applicants-service','document-service','partner-service','verification-service','billing-service','external-data-providers-service','storage-service']" >> "$GITHUB_OUTPUT"
           fi
+      - name: echo command
+        run: echo $GITHUB_OUTPUT
 
