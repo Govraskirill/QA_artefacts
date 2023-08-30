@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Packages list
         id: list
-        env:
-          JSON: ${{ steps.list.outputs.service }}
         run: |
           if [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
             echo "service=${{format('[{0}]',inputs.service)}}" >> "$GITHUB_OUTPUT"  
@@ -31,7 +29,7 @@ jobs:
             echo service="['api-service','data-tables-service','infra-manager-service','support-service','users-service','applicants-service','document-service','partner-service','verification-service','billing-service','external-data-providers-service','storage-service']" >> "$GITHUB_OUTPUT"
           fi
       - name: output
-        run: echo "$JSON"
+        run: echo ${{ steps.list.outputs.service }}
 
   
 
