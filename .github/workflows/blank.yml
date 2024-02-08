@@ -6,7 +6,6 @@ on:
     branches:
       - master
     paths-ignore:
-      - '.github/workflows'
       - 'test/file1.txt'
       - 'test/file2.txt'
 
