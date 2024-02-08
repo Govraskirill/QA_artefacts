@@ -18,7 +18,7 @@ jobs:
       - name: copy files to main-canada-2 branch
         env:
           SRC_FOLDER_PATH: './'
-          TARGET_BRANCH: 'copy1'
+          TARGET_BRANCH: 'copy'
         run: |
           git status
           ls -lsa
