@@ -6,8 +6,7 @@ on:
       - master
     paths-ignore:
       - '.github/workflows'
-      - '**/file1.txt'
-      - '**/file2.txt'
+
 
 jobs:
   copy:
