@@ -1,19 +1,23 @@
 name: Copy folder to other branch
 
 on: 
+  workflow_dispatch:
   push:
     branches:
       - master
     paths-ignore:
       - '.github/workflows'
-
+      - 'test/file1.txt'
+      - 'test/file2.txt'
 
 jobs:
   copy:
     name: Copy my folders
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout repo
+        uses: actions/checkout@v4
+        
       - name: copy files to main-canada-2 branch
         env:
           SRC_FOLDER_PATH: './'
