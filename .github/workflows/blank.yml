@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: copy1
+      - name: copy files to main-canada-2 branch
         env:
-          SRC_FOLDER_PATH: './**'
+          SRC_FOLDER_PATH: '/home/runner/work/QA_artefacts/QA_artefacts/**'
           TARGET_BRANCH: 'copy1'
         run: |
           files=$(find $SRC_FOLDER_PATH -type f) # get the file list
