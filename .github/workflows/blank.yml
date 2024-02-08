@@ -29,11 +29,11 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch --all                       # fetch branches
           git checkout $TARGET_BRANCH       # checkout to your branch
-          for i in "$files" ; do echo "$i"; done
-          echo $files > names.txt
-          sed -i '/.\/names.txt/d' names.txt 
-          sed -i '/.\/test\/file1.txt/d' names.txt
-          sed -i '/.\/test\/file2.txt/d' names.txt
+          for i in "$files" ; do echo "$i" |& tee -a names.txt; done
+          #echo $files > names.txt
+          #sed -i '/.\/names.txt/d' names.txt 
+          sed -i '/\.\/test\/file1\.txt/d' names.txt
+          sed -i '/\.\/test\/file2\.txt/d' names.txt
           while IFS= read -r line; do echo $line; done < names.txt
           #git checkout master -- ./ # copy files from the source branch
           rm names.txt
