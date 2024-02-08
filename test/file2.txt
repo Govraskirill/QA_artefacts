@@ -1,5 +1,2 @@
 file2
-NEW
-xxx
-yyy
-zzz
+qwerty
