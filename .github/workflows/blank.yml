@@ -30,8 +30,11 @@ jobs:
           git fetch --all                       # fetch branches
           git checkout $TARGET_BRANCH       # checkout to your branch
           for i in "$files" ; do echo "$i"; done
-          #for i in "$files"; do git checkout ${GITHUB_REF##*/} -- "$i"; done
-          git checkout master -- ./ # copy files from the source branch
+          echo $files > names.txt
+          sed -i '/.\/names.txt/d' names.txt 
+          while IFS= read -r line; do echo $line; done < names.txt
+          #git checkout master -- ./ # copy files from the source branch
+          rm names.txt
           git add -A
           git status
           git diff-index --quiet HEAD ||  git commit -m "deploy files"  # commit to the repository (ignore if no modification)
