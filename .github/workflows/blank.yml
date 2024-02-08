@@ -27,7 +27,7 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch                         # fetch branches
           git checkout $TARGET_BRANCH       # checkout to your branch
-          for i in $files ; do echo "$i"; done
+          for i in "$files" ; do echo "$i"; done
           for i in ./* ; do git checkout ${GITHUB_REF##*/} -- "$i"; done
           #git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add -A
