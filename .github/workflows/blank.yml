@@ -28,9 +28,9 @@ jobs:
           git fetch                         # fetch branches
           git checkout $TARGET_BRANCH       # checkout to your branch
           for i in "$files" ; do echo "$i"; done
-          for i in ./* ; do git checkout ${GITHUB_REF##*/} -- "$i"; done
+          for i in "$files"; do git checkout ${GITHUB_REF##*/} -- "$i"; done
           #git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add -A
           git status
-          git diff-index --quiet HEAD ||  git commit -m "deploy files"  # commit to the repository (ignore if no modification)
+          git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
