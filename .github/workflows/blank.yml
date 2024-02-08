@@ -19,7 +19,7 @@ jobs:
         
       - name: copy files to main-canada-2 branch
         env:
-          SRC_FOLDER_PATH: './newtest'
+          SRC_FOLDER_PATH: './**'
           TARGET_BRANCH: 'copy'
         run: |
           git status
