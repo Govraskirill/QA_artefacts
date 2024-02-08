@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '.github/workflows'
-      - 'test/file1.txt'
-      - 'test/file2.txt'
+    paths:
+      - '!.github/workflows'
+      - '!test/file1.txt'
+      - '!test/file2.txt'
 
 jobs:
   copy:
