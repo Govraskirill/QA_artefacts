@@ -34,7 +34,9 @@ jobs:
           #sed -i '/.\/names.txt/d' names.txt 
           sed -i '/\.\/test\/file1\.txt/d' names.txt
           sed -i '/\.\/test\/file2\.txt/d' names.txt
-          while IFS= read -r line; do echo $line; done < names.txt
+          sed -i '/\.\/\.git\//d' names.txt
+          #while IFS= read -r line; do echo $line; done < names.txt
+          while IFS= read -r line; do git checkout master -- "$line"; done < names.txt
           #git checkout master -- ./ # copy files from the source branch
           rm names.txt
           git add -A
